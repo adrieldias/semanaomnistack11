@@ -34,7 +34,9 @@ module.exports = {
         .where('id', id)
         .select('ong_id')
         .first();
-
+        if(incident === undefined){
+            return response.status(401).json({ error: 'Id not exists.'});
+        }
         if(incident.ong_id != ong_id) {
             return response.status(401).json({ error: 'Operation not permited.'});
         }
